@@ -1,4 +1,5 @@
 // COMSC 210 | Ethan Dilk | Lab 25 Races
+// Key change - using microseconds to track race time - when using milliseconds I was getting 0 for insert and delete
 #include <iostream>
 #include <fstream>
 #include <chrono>
@@ -39,21 +40,25 @@ int main() {
     cout << left << setw(columnWidth) << "Read";
     for (auto i : readingTimes)
         cout << setw(columnWidth) << i;
+    cout << endl;
 
     // Sort Output
     cout << left << setw(columnWidth) << "Sort";
     for (auto i : sortingTimes)
         cout << setw(columnWidth) << i;
+    cout << endl;
 
     // Inserting Output
     cout << left << setw(columnWidth) << "Insert";
     for (auto i : insertingTimes)
         cout << setw(columnWidth) << i;
+    cout << endl;
 
     // Deleting Output
     cout << left << setw(columnWidth) << "Deleting";
     for (auto i : deletingTimes)
         cout << setw(columnWidth) << i;
+    cout << endl;
 
     cout << endl;
 
@@ -63,8 +68,8 @@ int main() {
 /* syntax examples:
 auto start = high_resolution_clock::now()
 auto end = high_resolution_clock::now()
-auto duration = duration_cast<milliseconds>(end - start)
-duration.count() references elapsed milliseconds
+auto duration = duration_cast<microseconds>(end - start)
+duration.count() references elapsed microseconds
 */
 
 void reading(list<int> &times, vector<string>& stringVec, list<string>& stringList, set<string>& stringSet) {
@@ -82,8 +87,8 @@ void reading(list<int> &times, vector<string>& stringVec, list<string>& stringLi
     // end timing
     auto end = high_resolution_clock::now();
 
-    // duration in milliseconds
-    auto duration = duration_cast<milliseconds>(end - start);
+    // duration in microseconds
+    auto duration = duration_cast<microseconds>(end - start);
     // adding time into vector storing times
     times.push_back(duration.count());
     inputFile.clear();
@@ -99,7 +104,7 @@ void reading(list<int> &times, vector<string>& stringVec, list<string>& stringLi
     }
     // end timing
     end = high_resolution_clock::now();
-    duration = duration_cast<milliseconds>(end - start);
+    duration = duration_cast<microseconds>(end - start);
     
     // adding time into vector storing times
     times.push_back(duration.count());
@@ -116,7 +121,7 @@ void reading(list<int> &times, vector<string>& stringVec, list<string>& stringLi
     }
     // end timing
     end = high_resolution_clock::now();
-    duration = duration_cast<milliseconds>(end - start);
+    duration = duration_cast<microseconds>(end - start);
     
     // adding time into vector storing times
     times.push_back(duration.count());
@@ -132,7 +137,7 @@ void sorting(list<int> &times, vector<string>& stringVec, list<string>& stringLi
     sort(stringVec.begin(), stringVec.end());
     
     auto end = high_resolution_clock::now();
-    auto duration = duration_cast<milliseconds>(end - start);
+    auto duration = duration_cast<microseconds>(end - start);
 
     times.push_back(duration.count());
 
@@ -142,7 +147,7 @@ void sorting(list<int> &times, vector<string>& stringVec, list<string>& stringLi
     sort(stringVec.begin(), stringVec.end());
     
     end = high_resolution_clock::now();
-    duration = duration_cast<milliseconds>(end - start);
+    duration = duration_cast<microseconds>(end - start);
 
     times.push_back(duration.count());
 
@@ -159,7 +164,7 @@ void inserting(list<int> &times, vector<string>& stringVec, list<string>& string
     stringVec.insert(stringVec.begin() + (stringVec.size() / 2), "TESTCODE");
     
     auto end = high_resolution_clock::now();
-    auto duration = duration_cast<milliseconds>(end - start);
+    auto duration = duration_cast<microseconds>(end - start);
 
     times.push_back(duration.count());
 
@@ -171,7 +176,7 @@ void inserting(list<int> &times, vector<string>& stringVec, list<string>& string
     stringList.insert(it, "TESTCODE");
     
     end = high_resolution_clock::now();
-    duration = duration_cast<milliseconds>(end - start);
+    duration = duration_cast<microseconds>(end - start);
 
     times.push_back(duration.count());
 
@@ -181,7 +186,7 @@ void inserting(list<int> &times, vector<string>& stringVec, list<string>& string
     stringSet.insert("TESTCODE");
     
     end = high_resolution_clock::now();
-    duration = duration_cast<milliseconds>(end - start);
+    duration = duration_cast<microseconds>(end - start);
 
     times.push_back(duration.count());
 
@@ -195,7 +200,7 @@ void deleting(list<int> &times, vector<string>& stringVec, list<string>& stringL
     stringVec.erase(stringVec.begin() + (stringVec.size() / 2));
     
     auto end = high_resolution_clock::now();
-    auto duration = duration_cast<milliseconds>(end - start);
+    auto duration = duration_cast<microseconds>(end - start);
 
     times.push_back(duration.count());
 
@@ -207,7 +212,7 @@ void deleting(list<int> &times, vector<string>& stringVec, list<string>& stringL
     stringList.erase(it);
     
     end = high_resolution_clock::now();
-    duration = duration_cast<milliseconds>(end - start);
+    duration = duration_cast<microseconds>(end - start);
 
     times.push_back(duration.count());
 
@@ -219,7 +224,7 @@ void deleting(list<int> &times, vector<string>& stringVec, list<string>& stringL
     stringSet.erase(it1);
     
     end = high_resolution_clock::now();
-    duration = duration_cast<milliseconds>(end - start);
+    duration = duration_cast<microseconds>(end - start);
 
     times.push_back(duration.count());
 
