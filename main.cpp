@@ -1,3 +1,4 @@
+// COMSC 210 | Ethan Dilk | Lab 25 Races
 #include <iostream>
 #include <chrono>
 using namespace std;
