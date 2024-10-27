@@ -10,10 +10,10 @@ using namespace std;
 using namespace std::chrono;
 
 
-list<int> reading(list<int> &times, vector<string>&, );
-list<int> sorting(list<int> &times);
-list<int> inserting(list<int> &times);
-list<int> deleting(list<int> &times);
+list<int> reading(list<int> &times, vector<string>&, list<string>&, set<string>&);
+list<int> sorting(list<int> &times, vector<string>&, list<string>&, set<string>&);
+list<int> inserting(list<int> &times, vector<string>&, list<string>&, set<string>&);
+list<int> deleting(list<int> &times, vector<string>&, list<string>&, set<string>&);
 
 int main() {
     
@@ -27,6 +27,8 @@ int main() {
 
 
 
+
+
     return 0;
 }
 
@@ -37,3 +39,19 @@ auto duration = duration_cast<milliseconds>(end - start)
 duration.count() references elapsed milliseconds
 */
 
+list<int> reading(list<int> &times, vector<string>&, list<string>&, set<string>&) {
+    
+    ifstream inputFile("codes.txt");
+
+    // Reading in to vector
+    // start timing
+    auto start = high_resolution_clock::now();
+
+
+
+
+
+
+
+
+}
