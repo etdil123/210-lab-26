@@ -7,6 +7,7 @@
 #include <set>
 #include <string>
 #include <algorithm>
+#include <iomanip>
 using namespace std;
 using namespace std::chrono;
 
@@ -17,6 +18,7 @@ void inserting(list<int> &times, vector<string>&, list<string>&, set<string>&);
 void deleting(list<int> &times, vector<string>&, list<string>&, set<string>&);
 
 int main() {
+    int columnWidth = 15;
     
     // initialize lists to store scores
     list<int> readingTimes, sortingTimes, insertingTimes, deletingTimes;
@@ -27,7 +29,33 @@ int main() {
     set<string> testSet;
 
     reading(readingTimes, testVec, testList, testSet);
+    sorting(sortingTimes, testVec, testList, testSet);
+    inserting(insertingTimes, testVec, testList, testSet);
+    deleting(deletingTimes, testVec, testList, testSet);
 
+    cout << left << setw(columnWidth) << "Operation" << setw(columnWidth) << "Vector" << setw(columnWidth) << "List" << setw(columnWidth) << "Set" << endl;
+    
+    // Read Output
+    cout << left << setw(columnWidth) << "Read";
+    for (auto i : readingTimes)
+        cout << setw(columnWidth) << i;
+
+    // Sort Output
+    cout << left << setw(columnWidth) << "Sort";
+    for (auto i : sortingTimes)
+        cout << setw(columnWidth) << i;
+
+    // Inserting Output
+    cout << left << setw(columnWidth) << "Insert";
+    for (auto i : insertingTimes)
+        cout << setw(columnWidth) << i;
+
+    // Deleting Output
+    cout << left << setw(columnWidth) << "Deleting";
+    for (auto i : deletingTimes)
+        cout << setw(columnWidth) << i;
+
+    cout << endl;
 
     return 0;
 }
