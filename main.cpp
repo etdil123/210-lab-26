@@ -39,18 +39,32 @@ auto duration = duration_cast<milliseconds>(end - start)
 duration.count() references elapsed milliseconds
 */
 
-list<int> reading(list<int> &times, vector<string>&, list<string>&, set<string>&) {
+list<int> reading(list<int> &times, vector<string>& stringVec, list<string>& stringList, set<string>& stringSet) {
     
     ifstream inputFile("codes.txt");
 
-    // Reading in to vector
+    // Reading in to VECTOR
     // start timing
     auto start = high_resolution_clock::now();
 
+    string temp;
+    while(getline(inputFile, temp)) {
+        stringVec.push_back(temp);
+    }
+    // end timing
+    auto end = high_resolution_clock::now();
 
+    // duration in milliseconds
+    auto duration = duration_cast<milliseconds>(end - start);
+    // adding time into vector storing times
+    times.push_back(duration.count());
 
+    // Reading in to LIST 
+    // start timing
+    start = high_resolution_clock::now();
 
-
+    // 
+    
 
 
 
