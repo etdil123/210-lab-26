@@ -21,46 +21,66 @@ void deleting(list<int> &times, vector<string>&, list<string>&, set<string>&);
 int main() {
     int columnWidth = 15;
     
-    // initialize lists to store scores
-    list<int> readingTimes, sortingTimes, insertingTimes, deletingTimes;
+    bool programRun = true;
 
-    // Initialize vector, list, and set to be used in race
-    vector<string> testVec;
-    list<string> testList;
-    set<string> testSet;
+    while (programRun == true) {
+        char userChoice;
 
-    reading(readingTimes, testVec, testList, testSet);
-    sorting(sortingTimes, testVec, testList, testSet);
-    inserting(insertingTimes, testVec, testList, testSet);
-    deleting(deletingTimes, testVec, testList, testSet);
+        // initialize lists to store scores
+        list<int> readingTimes, sortingTimes, insertingTimes, deletingTimes;
 
-    cout << left << setw(columnWidth) << "Operation" << setw(columnWidth) << "Vector" << setw(columnWidth) << "List" << setw(columnWidth) << "Set" << endl;
-    
-    // Read Output
-    cout << left << setw(columnWidth) << "Read";
-    for (auto i : readingTimes)
-        cout << setw(columnWidth) << i;
-    cout << endl;
+        // Initialize vector, list, and set to be used in race
+        vector<string> testVec;
+        list<string> testList;
+        set<string> testSet;
 
-    // Sort Output
-    cout << left << setw(columnWidth) << "Sort";
-    for (auto i : sortingTimes)
-        cout << setw(columnWidth) << i;
-    cout << endl;
+        reading(readingTimes, testVec, testList, testSet);
+        sorting(sortingTimes, testVec, testList, testSet);
+        inserting(insertingTimes, testVec, testList, testSet);
+        deleting(deletingTimes, testVec, testList, testSet);
 
-    // Inserting Output
-    cout << left << setw(columnWidth) << "Insert";
-    for (auto i : insertingTimes)
-        cout << setw(columnWidth) << i;
-    cout << endl;
+        cout << left << setw(columnWidth) << "Operation" << setw(columnWidth) << "Vector" << setw(columnWidth) << "List" << setw(columnWidth) << "Set" << endl;
+        
+        // Read Output
+        cout << left << setw(columnWidth) << "Read";
+        for (auto i : readingTimes)
+            cout << setw(columnWidth) << i;
+        cout << endl;
 
-    // Deleting Output
-    cout << left << setw(columnWidth) << "Deleting";
-    for (auto i : deletingTimes)
-        cout << setw(columnWidth) << i;
-    cout << endl;
+        // Sort Output
+        cout << left << setw(columnWidth) << "Sort";
+        for (auto i : sortingTimes)
+            cout << setw(columnWidth) << i;
+        cout << endl;
 
-    cout << endl;
+        // Inserting Output
+        cout << left << setw(columnWidth) << "Insert";
+        for (auto i : insertingTimes)
+            cout << setw(columnWidth) << i;
+        cout << endl;
+
+        // Deleting Output
+        cout << left << setw(columnWidth) << "Deleting";
+        for (auto i : deletingTimes)
+            cout << setw(columnWidth) << i;
+        cout << endl;
+
+        cout << "\nWould you like to run the race again (y/n): " ;
+        cin >> userChoice;
+        while (userChoice != 'y' && userChoice != 'Y' && userChoice != 'n' && userChoice != 'N') {
+            cout << "Please input valid selection!" << endl;
+            cout << "Would you like to run the race again (y/n): " ;
+            cin >> userChoice;
+        }
+
+        if (userChoice == 'y' || userChoice == 'Y')
+            programRun = true;
+        else
+            programRun = false;
+
+    }
+
+    cout << "\nThank you for using the data structures race program!" << endl;
 
     return 0;
 }
