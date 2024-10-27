@@ -122,3 +122,29 @@ void sorting(list<int> &times, vector<string>& stringVec, list<string>& stringLi
     times.push_back(-1);
 
 }
+
+void inserting(list<int> &times, vector<string>& stringVec, list<string>& stringList, set<string>& stringSet) {
+
+    // Inserting value in VECTOR
+    auto start = high_resolution_clock::now();
+
+    stringVec.insert(stringVec.begin() + (stringVec.size() / 2), "TESTCODE");
+    
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
+
+    times.push_back(duration.count());
+
+    // Inserting value in LIST
+    start = high_resolution_clock::now();
+
+    //stringVec.insert(stringVec.begin() + (stringVec.size() / 2), "TESTCODE");
+    auto it = stringList.begin();
+    advance(it, (stringList.size() / 2));
+    
+    end = high_resolution_clock::now();
+    duration = duration_cast<milliseconds>(end - start);
+
+    times.push_back(duration.count());
+
+}
