@@ -138,9 +138,19 @@ void inserting(list<int> &times, vector<string>& stringVec, list<string>& string
     // Inserting value in LIST
     start = high_resolution_clock::now();
 
-    //stringVec.insert(stringVec.begin() + (stringVec.size() / 2), "TESTCODE");
     auto it = stringList.begin();
     advance(it, (stringList.size() / 2));
+    stringList.insert(it, "TESTCODE");
+    
+    end = high_resolution_clock::now();
+    duration = duration_cast<milliseconds>(end - start);
+
+    times.push_back(duration.count());
+
+    // Inserting value in SET
+    start = high_resolution_clock::now();
+
+    stringSet.insert("TESTCODE");
     
     end = high_resolution_clock::now();
     duration = duration_cast<milliseconds>(end - start);
@@ -148,3 +158,4 @@ void inserting(list<int> &times, vector<string>& stringVec, list<string>& string
     times.push_back(duration.count());
 
 }
+
