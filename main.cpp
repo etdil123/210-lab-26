@@ -186,9 +186,9 @@ void deleting(list<int> &times, vector<string>& stringVec, list<string>& stringL
     // Deleting value in SET 
     start = high_resolution_clock::now();
 
-    auto it = stringSet.begin();
-    advance(it, (stringSet.size() / 2));
-    stringSet.erase(it);
+    auto it1 = stringSet.begin();
+    advance(it1, (stringSet.size() / 2));
+    stringSet.erase(it1);
     
     end = high_resolution_clock::now();
     duration = duration_cast<milliseconds>(end - start);
