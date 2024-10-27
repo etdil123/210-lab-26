@@ -6,6 +6,7 @@
 #include <list>
 #include <set>
 #include <string>
+#include <algorithm>
 using namespace std;
 using namespace std::chrono;
 
@@ -97,14 +98,27 @@ void reading(list<int> &times, vector<string>& stringVec, list<string>& stringLi
 }
 
 void sorting(list<int> &times, vector<string>& stringVec, list<string>& stringList, set<string>& stringSet) {
-
+    // Sorting VECTOR
     auto start = high_resolution_clock::now();
-    
+
+    sort(stringVec.begin(), stringVec.end());
     
     auto end = high_resolution_clock::now();
-    
     auto duration = duration_cast<milliseconds>(end - start);
-    
 
+    times.push_back(duration.count());
+
+    // Sorting LIST
+    start = high_resolution_clock::now();
+
+    sort(stringVec.begin(), stringVec.end());
+    
+    end = high_resolution_clock::now();
+    duration = duration_cast<milliseconds>(end - start);
+
+    times.push_back(duration.count());
+
+    // Sorting SET - using -1 because set is already sorted
+    times.push_back(-1);
 
 }
