@@ -159,3 +159,30 @@ void inserting(list<int> &times, vector<string>& stringVec, list<string>& string
 
 }
 
+void deleting(list<int> &times, vector<string>& stringVec, list<string>& stringList, set<string>& stringSet) {
+
+    // Deleting value in VECTOR
+    auto start = high_resolution_clock::now();
+
+    stringVec.erase(stringVec.begin() + (stringVec.size() / 2));
+    
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
+
+    times.push_back(duration.count());
+
+    // Deleting value in LIST 
+    start = high_resolution_clock::now();
+
+    auto it = stringList.begin();
+    advance(it, (stringList.size() / 2));
+    stringList.erase(it);
+    
+    end = high_resolution_clock::now();
+    duration = duration_cast<milliseconds>(end - start);
+
+    times.push_back(duration.count());
+
+
+} 
+
