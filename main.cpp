@@ -11,9 +11,9 @@ using namespace std::chrono;
 
 
 void reading(list<int> &times, vector<string>&, list<string>&, set<string>&);
-list<int> sorting(list<int> &times, vector<string>&, list<string>&, set<string>&);
-list<int> inserting(list<int> &times, vector<string>&, list<string>&, set<string>&);
-list<int> deleting(list<int> &times, vector<string>&, list<string>&, set<string>&);
+void sorting(list<int> &times, vector<string>&, list<string>&, set<string>&);
+void inserting(list<int> &times, vector<string>&, list<string>&, set<string>&);
+void deleting(list<int> &times, vector<string>&, list<string>&, set<string>&);
 
 int main() {
     
@@ -21,15 +21,11 @@ int main() {
     list<int> readingTimes, sortingTimes, insertingTimes, deletingTimes;
 
     // Initialize vector, list, and set to be used in race
-    vector<string>;
-    list<string>;
-    set<string>;
+    vector<string> testVec;
+    list<string> testList;
+    set<string> testSet;
 
-    
-    for (auto t : readingTimes)
-        cout << t << endl;
-
-
+    reading(readingTimes, testVec, testList, testSet);
 
 
     return 0;
@@ -97,5 +93,18 @@ void reading(list<int> &times, vector<string>& stringVec, list<string>& stringLi
     times.push_back(duration.count());
     inputFile.clear();
     inputFile.seekg(0);
+
+}
+
+void sorting(list<int> &times, vector<string>& stringVec, list<string>& stringList, set<string>& stringSet) {
+
+    auto start = high_resolution_clock::now();
+    
+    
+    auto end = high_resolution_clock::now();
+    
+    auto duration = duration_cast<milliseconds>(end - start);
+    
+
 
 }
