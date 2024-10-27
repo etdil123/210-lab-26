@@ -85,13 +85,6 @@ int main() {
     return 0;
 }
 
-/* syntax examples:
-auto start = high_resolution_clock::now()
-auto end = high_resolution_clock::now()
-auto duration = duration_cast<microseconds>(end - start)
-duration.count() references elapsed microseconds
-*/
-
 void reading(list<int> &times, vector<string>& stringVec, list<string>& stringList, set<string>& stringSet) {
     
     ifstream inputFile("codes.txt");
