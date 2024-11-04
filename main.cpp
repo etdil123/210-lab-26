@@ -13,60 +13,46 @@ using namespace std;
 using namespace std::chrono;
 
 
-void reading(list<int> &times, vector<string>&, list<string>&, set<string>&);
-void sorting(list<int> &times, vector<string>&, list<string>&, set<string>&);
-void inserting(list<int> &times, vector<string>&, list<string>&, set<string>&);
-void deleting(list<int> &times, vector<string>&, list<string>&, set<string>&);
+void reading(int times[15][4][3], int run, vector<string>&, list<string>&, set<string>&);
+void sorting(int times[15][4][3], int run, vector<string>&, list<string>&, set<string>&);
+void inserting(int times[15][4][3], int run, vector<string>&, list<string>&, set<string>&);
+void deleting(int times[15][4][3], int run, vector<string>&, list<string>&, set<string>&);
 
 int main() {
+    int times[15][4][3] = {0}; // 3D array to store times for 15 runs, 4 operations, 3 data structures
     int columnWidth = 15;
 
-    // 3d array to store 15 runs for 4 operations on 3 data structures
-    int times[15][4][3] = {0};
-    
-    // initialize lists to store scores
-    list<int> readingTimes, sortingTimes, insertingTimes, deletingTimes;
+    // Run tests 15 times
+    for (int run = 0; run < 15; ++run) {
+        // Initialize vector, list, and set to be used in each race
+        vector<string> testVec;
+        list<string> testList;
+        set<string> testSet;
 
-    
-    // Initialize vector, list, and set to be used in race
-    vector<string> testVec;
-    list<string> testList;
-    set<string> testSet;
+        reading(times, run, testVec, testList, testSet);
+        sorting(times, run, testVec, testList, testSet);
+        inserting(times, run, testVec, testList, testSet);
+        deleting(times, run, testVec, testList, testSet);
+    }
 
-    reading(readingTimes, testVec, testList, testSet);
-    sorting(sortingTimes, testVec, testList, testSet);
-    inserting(insertingTimes, testVec, testList, testSet);
-    deleting(deletingTimes, testVec, testList, testSet);
-
+    // Calculate and display average times
     cout << left << setw(columnWidth) << "Operation" << setw(columnWidth) << "Vector" << setw(columnWidth) << "List" << setw(columnWidth) << "Set" << endl;
-    
-    // Read Output
-    cout << left << setw(columnWidth) << "Read";
-    for (auto i : readingTimes)
-        cout << setw(columnWidth) << i;
-    cout << endl;
 
-    // Sort Output
-    cout << left << setw(columnWidth) << "Sort";
-    for (auto i : sortingTimes)
-        cout << setw(columnWidth) << i;
-    cout << endl;
+    string operations[4] = {"Read", "Sort", "Insert", "Delete"};
 
-    // Inserting Output
-    cout << left << setw(columnWidth) << "Insert";
-    for (auto i : insertingTimes)
-        cout << setw(columnWidth) << i;
-    cout << endl;
-
-    // Deleting Output
-    cout << left << setw(columnWidth) << "Deleting";
-    for (auto i : deletingTimes)
-        cout << setw(columnWidth) << i;
-    cout << endl;
-
+    for (int op = 0; op < 4; ++op) {
+        cout << left << setw(columnWidth) << operations[op];
+        for (int ds = 0; ds < 3; ++ds) {
+            int total = 0;
+            for (int run = 0; run < 15; ++run) {
+                total += times[run][op][ds];
+            }
+            cout << setw(columnWidth) << (total / 15); // Output average
+        }
+        cout << endl;
+    }
 
     cout << "\nThank you for using the data structures race program!" << endl;
-
     return 0;
 }
 
