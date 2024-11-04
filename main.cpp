@@ -40,177 +40,119 @@ int main() {
 
     string operations[4] = {"Read", "Sort", "Insert", "Delete"};
 
+    cout << "Number of simulations: 15" << endl;
+    // for each operation
     for (int op = 0; op < 4; ++op) {
         cout << left << setw(columnWidth) << operations[op];
+        // for each data structure
         for (int ds = 0; ds < 3; ++ds) {
             int total = 0;
             for (int run = 0; run < 15; ++run) {
+                // run through each element in 3d array
                 total += times[run][op][ds];
             }
-            cout << setw(columnWidth) << (total / 15); // Output average
+            // output the average
+            cout << setw(columnWidth) << (total / 15); 
         }
         cout << endl;
     }
 
-    cout << "\nThank you for using the data structures race program!" << endl;
+    cout << "\nThank you for using the data structures olympic program!" << endl;
     return 0;
 }
 
-void reading(list<int> &times, vector<string>& stringVec, list<string>& stringList, set<string>& stringSet) {
-    
+void reading(int times[15][4][3], int run, vector<string>& stringVec, list<string>& stringList, set<string>& stringSet) {
     ifstream inputFile("codes.txt");
-
-    // Reading in to VECTOR
-    // start timing
-    auto start = high_resolution_clock::now();
-
     string temp;
+
+    // Reading into VECTOR
+    auto start = high_resolution_clock::now();
     while(getline(inputFile, temp)) {
         stringVec.push_back(temp);
     }
-    // end timing
     auto end = high_resolution_clock::now();
-
-    // duration in microseconds
-    auto duration = duration_cast<microseconds>(end - start);
-    // adding time into vector storing times
-    times.push_back(duration.count());
+    times[run][0][0] = duration_cast<microseconds>(end - start).count();
     inputFile.clear();
     inputFile.seekg(0);
 
-    // Reading in to LIST 
-    // start timing
+    // Reading into LIST
     start = high_resolution_clock::now();
-
-    string temp1;
-    while(getline(inputFile, temp1)) {
-        stringList.push_back(temp1);
+    while(getline(inputFile, temp)) {
+        stringList.push_back(temp);
     }
-    // end timing
     end = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(end - start);
-    
-    // adding time into vector storing times
-    times.push_back(duration.count());
+    times[run][0][1] = duration_cast<microseconds>(end - start).count();
     inputFile.clear();
     inputFile.seekg(0);
 
-     // Reading in to SET 
-    // start timing
+    // Reading into SET
     start = high_resolution_clock::now();
-
-    string temp2;
-    while(getline(inputFile, temp2)) {
-        stringSet.insert(temp2);
+    while(getline(inputFile, temp)) {
+        stringSet.insert(temp);
     }
-    // end timing
     end = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(end - start);
-    
-    // adding time into vector storing times
-    times.push_back(duration.count());
-    inputFile.clear();
-    inputFile.seekg(0);
-
+    times[run][0][2] = duration_cast<microseconds>(end - start).count();
 }
 
-void sorting(list<int> &times, vector<string>& stringVec, list<string>& stringList, set<string>& stringSet) {
+void sorting(int times[15][4][3], int run, vector<string>& stringVec, list<string>& stringList, set<string>& stringSet) {
     // Sorting VECTOR
     auto start = high_resolution_clock::now();
-
     sort(stringVec.begin(), stringVec.end());
-    
     auto end = high_resolution_clock::now();
-    auto duration = duration_cast<microseconds>(end - start);
-
-    times.push_back(duration.count());
+    times[run][1][0] = duration_cast<microseconds>(end - start).count();
 
     // Sorting LIST
     start = high_resolution_clock::now();
-
-    sort(stringVec.begin(), stringVec.end());
-    
+    stringList.sort();
     end = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(end - start);
+    times[run][1][1] = duration_cast<microseconds>(end - start).count();
 
-    times.push_back(duration.count());
-
-    // Sorting SET - using -1 because set is already sorted
-    times.push_back(-1);
-
+    // Sorting SET - use -1 because set is already sorted
+    times[run][1][2] = -1;
 }
 
-void inserting(list<int> &times, vector<string>& stringVec, list<string>& stringList, set<string>& stringSet) {
-
-    // Inserting value in VECTOR
+void inserting(int times[15][4][3], int run, vector<string>& stringVec, list<string>& stringList, set<string>& stringSet) {
+    // Inserting into VECTOR
     auto start = high_resolution_clock::now();
-
     stringVec.insert(stringVec.begin() + (stringVec.size() / 2), "TESTCODE");
-    
     auto end = high_resolution_clock::now();
-    auto duration = duration_cast<microseconds>(end - start);
+    times[run][2][0] = duration_cast<microseconds>(end - start).count();
 
-    times.push_back(duration.count());
-
-    // Inserting value in LIST
+    // Inserting into LIST
     start = high_resolution_clock::now();
-
     auto it = stringList.begin();
     advance(it, (stringList.size() / 2));
     stringList.insert(it, "TESTCODE");
-    
     end = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(end - start);
+    times[run][2][1] = duration_cast<microseconds>(end - start).count();
 
-    times.push_back(duration.count());
-
-    // Inserting value in SET
+    // Inserting into SET
     start = high_resolution_clock::now();
-
     stringSet.insert("TESTCODE");
-    
     end = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(end - start);
-
-    times.push_back(duration.count());
-
+    times[run][2][2] = duration_cast<microseconds>(end - start).count();
 }
 
-void deleting(list<int> &times, vector<string>& stringVec, list<string>& stringList, set<string>& stringSet) {
-
-    // Deleting value in VECTOR
+void deleting(int times[15][4][3], int run, vector<string>& stringVec, list<string>& stringList, set<string>& stringSet) {
+    // Deleting from VECTOR
     auto start = high_resolution_clock::now();
-
     stringVec.erase(stringVec.begin() + (stringVec.size() / 2));
-    
     auto end = high_resolution_clock::now();
-    auto duration = duration_cast<microseconds>(end - start);
+    times[run][3][0] = duration_cast<microseconds>(end - start).count();
 
-    times.push_back(duration.count());
-
-    // Deleting value in LIST 
+    // Deleting from LIST
     start = high_resolution_clock::now();
-
     auto it = stringList.begin();
     advance(it, (stringList.size() / 2));
     stringList.erase(it);
-    
     end = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(end - start);
+    times[run][3][1] = duration_cast<microseconds>(end - start).count();
 
-    times.push_back(duration.count());
-
-    // Deleting value in SET 
+    // Deleting from SET
     start = high_resolution_clock::now();
-
     auto it1 = stringSet.begin();
     advance(it1, (stringSet.size() / 2));
     stringSet.erase(it1);
-    
     end = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(end - start);
-
-    times.push_back(duration.count());
-
-} 
-
+    times[run][3][2] = duration_cast<microseconds>(end - start).count();
+}
