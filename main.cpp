@@ -24,13 +24,10 @@ int main() {
     // 3d array to store 15 runs for 4 operations on 3 data structures
     int times[15][4][3] = {0};
     
-    bool programRun = true;
-
-    char userChoice;
-
     // initialize lists to store scores
     list<int> readingTimes, sortingTimes, insertingTimes, deletingTimes;
 
+    
     // Initialize vector, list, and set to be used in race
     vector<string> testVec;
     list<string> testList;
@@ -67,20 +64,6 @@ int main() {
         cout << setw(columnWidth) << i;
     cout << endl;
 
-    cout << "\nWould you like to run the race again (y/n): " ;
-    cin >> userChoice;
-    while (userChoice != 'y' && userChoice != 'Y' && userChoice != 'n' && userChoice != 'N') {
-        cout << "Please input valid selection!" << endl;
-        cout << "Would you like to run the race again (y/n): " ;
-        cin >> userChoice;
-    }
-
-    if (userChoice == 'y' || userChoice == 'Y')
-        programRun = true;
-    else
-        programRun = false;
-
-    
 
     cout << "\nThank you for using the data structures race program!" << endl;
 
