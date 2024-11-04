@@ -35,12 +35,13 @@ int main() {
         deleting(times, run, testVec, testList, testSet);
     }
 
+    cout << "Number of simulations: 15" << endl;
+
     // Calculate and display average times
     cout << left << setw(columnWidth) << "Operation" << setw(columnWidth) << "Vector" << setw(columnWidth) << "List" << setw(columnWidth) << "Set" << endl;
 
     string operations[4] = {"Read", "Sort", "Insert", "Delete"};
 
-    cout << "Number of simulations: 15" << endl;
     // for each operation
     for (int op = 0; op < 4; ++op) {
         cout << left << setw(columnWidth) << operations[op];
