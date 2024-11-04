@@ -1,4 +1,4 @@
-// COMSC 210 | Ethan Dilk | Lab 25 Races
+// COMSC 210 | Ethan Dilk | Lab 26 Olympics
 // Key change - using microseconds to track race time - when using milliseconds I was getting 0 for insert and delete
 #include <iostream>
 #include <fstream>
